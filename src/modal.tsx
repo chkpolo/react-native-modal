@@ -350,6 +350,7 @@ export class ReactNativeModal extends React.Component<ModalProps, State> {
 
         if (this.isSwipeDirectionAllowed(gestureState)) {
           // Dim the background while swiping the modal
+          const direction = gestureState.dx;
           const newOpacityFactor =
             1 - this.calcDistancePercentage(gestureState);
 
@@ -361,7 +362,7 @@ export class ReactNativeModal extends React.Component<ModalProps, State> {
           animEvt!(evt, gestureState);
 
           if (this.props.onSwipeMove) {
-            this.props.onSwipeMove(newOpacityFactor);
+            this.props.onSwipeMove(newOpacityFactor, direction);
           }
         } else {
           if (this.props.scrollTo) {
